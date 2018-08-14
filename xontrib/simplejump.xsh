@@ -46,7 +46,12 @@ def simplejump(args, stdin, stdout, stderr):
 
 
 def simplejump_completer(prefix, line, begidx, endidx, ctx):
-    cmd, *args = line.split()
+    args = line.split()
+
+    if len(args) == 0:
+        return None
+
+    cmd = args[0]
 
     if cmd == 'simplejump' or aliases.get(cmd) == simplejump:
         return {base for base in $SIMPLEJUMP_DICT if prefix in base}

@@ -7,7 +7,7 @@ except ImportError:
 
 setup(
     name="xontrib-simplejump",
-    version="0.5.0",
+    version="0.5.1",
     license="EUPL-1.2",
     author="Médéric Hurier",
     author_email="dev@fmind.me",
