@@ -1,16 +1,16 @@
 # simplejump
 
-# Overview
+## Overview
 
 The simplest way to jump between directories.
 
-# Installation
+## Installation
 
 ```bash
 pip install xontrib-simplejump
 ```
 
-# Motivation
+## Motivation
 
 I wanted a simple and efficient alternative to z, fasd and other jump scripts.
 
@@ -31,7 +31,7 @@ simplejump file:
 
 - **simplejump file**: ~/.simplejump
 
-# Example
+## Example
 
 ```bash
 simplejump [DIR]
