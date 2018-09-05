@@ -5,7 +5,7 @@ $SIMPLEJUMP_FILE = $SIMPLEJUMP_FILE if 'SIMPLEJUMP_FILE' in ${...} else os.path.
 
 @events.on_chdir
 def jumpdirs(olddir, newdir):
-    $SIMPLEJUMP_DICT[os.path.basename(newdir)] = newdir
+    $SIMPLEJUMP_DICT[os.path.basename(newdir).lower()] = newdir
 
 
 @events.on_exit
@@ -32,7 +32,7 @@ def simplejump(args, stdin, stdout, stderr):
         return 0
 
     pwd = $PWD
-    to = args[0]
+    to = args[0].lower()
 
     if to in $SIMPLEJUMP_DICT:
         pwd = $SIMPLEJUMP_DICT[to]
@@ -51,7 +51,7 @@ def simplejump_completer(prefix, line, begidx, endidx, ctx):
     if len(args) == 0:
         return None
 
-    cmd = args[0]
+    cmd = args[0].lower()
 
     if cmd == 'simplejump' or aliases.get(cmd) == simplejump:
         return {base for base in $SIMPLEJUMP_DICT if prefix in base}

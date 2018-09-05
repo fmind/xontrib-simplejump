@@ -22,6 +22,9 @@ simplejump algorithm:
 - **on shell init**:  load the dict from simplejump file or an empty dict
 - **on shell exit**: store the dict in simplejump file using json format
 
+simplejump design:
+- keys/names are case insensitive, values/paths are case sensitive
+
 simplejump vars:
 
 - **simplejump file**: $SIMPLEJUMP_FILE
