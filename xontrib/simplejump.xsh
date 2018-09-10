@@ -3,27 +3,35 @@ import json
 
 $SIMPLEJUMP_FILE = $SIMPLEJUMP_FILE if 'SIMPLEJUMP_FILE' in ${...} else os.path.expanduser('~/.simplejump')
 
+def simplejump_dict():
+    if not os.path.exists($SIMPLEJUMP_FILE):
+        return dict()
+
+    with open($SIMPLEJUMP_FILE) as r:
+        try:
+            return json.load(r)
+        except json.decoder.JSONDecodeError:
+            return dict()
+
+
 @events.on_chdir
-def jumpdirs(olddir, newdir):
+def simplejump_dirs(olddir, newdir):
     $SIMPLEJUMP_DICT[os.path.basename(newdir).lower()] = newdir
 
 
 @events.on_exit
 def jumpsave():
+    # merge disk and memory dict
+    simpledict = $SIMPLEJUMP_DICT
+    simpledict.update(simplejump_dict())
+
     with open($SIMPLEJUMP_FILE, 'w') as w:
-        json.dump($SIMPLEJUMP_DICT, w, indent=4, sort_keys=True)
+        json.dump(simpledict, w, indent=4, sort_keys=True)
 
 
 @events.on_post_init
-def jumpload():
-    if os.path.exists($SIMPLEJUMP_FILE):
-        with open($SIMPLEJUMP_FILE) as r:
-            try:
-                $SIMPLEJUMP_DICT = json.load(r)
-            except json.decoder.JSONDecodeError:
-                $SIMPLEJUMP_DICT = dict()
-    else:
-        $SIMPLEJUMP_DICT = dict()
+def simplejump_load():
+    $SIMPLEJUMP_DICT = simplejump_dict()
 
 
 def simplejump(args, stdin, stdout, stderr):
