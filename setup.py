@@ -4,7 +4,7 @@ from setuptools import setup  # type: ignore
 
 setup(
     name="xontrib-simplejump",
-    version="0.6.5",
+    version="0.6.6",
     license="EUPL-1.2",
     author="Médéric Hurier",
     author_email="dev@fmind.me",
@@ -24,7 +24,7 @@ setup(
         "License :: OSI Approved :: European Union Public Licence 1.2 (EUPL 1.2)",
     ],
     extras_require={"dist": ["twine", "wheel", "setuptools"]},
-    python_requires=">=3.6",
+    python_requires=">=3.5",
     install_requires=["xonsh"],
     packages=["xontrib"],
     package_dir={"xontrib": "xontrib"},
