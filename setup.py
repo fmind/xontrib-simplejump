@@ -5,7 +5,7 @@ from setuptools import setup  # type: ignore
 setup(
     name="xontrib-simplejump",
     version="0.6.6",
-    license="EUPL-1.2",
+    license="AGPL-3.0",
     author="Médéric Hurier",
     author_email="dev@fmind.me",
     long_description_content_type="text/markdown",
